@@ -1,7 +1,7 @@
 #ifndef ECX_VEC2_H
 #define ECX_VEC2_H
 
-
+#include "ECX_Vec3f.h"
 #include <cassert>
 
 namespace ECX_Maths

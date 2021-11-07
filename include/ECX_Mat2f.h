@@ -1,9 +1,10 @@
 #ifndef ECX_MAT2_H
 #define ECX_MAT2_H
+
+
+#include "ECX_Mat3f.h"
 #include "ECX_Vec2f.h"
 #include <cassert>
-#include "ECX_Mat3f.h"
-
 
 namespace ECX_Maths
 {
