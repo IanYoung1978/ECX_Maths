@@ -6,6 +6,8 @@
 #include "ECX_Mat2f.h"
 #include "ECX_Mat3f.h"
 #include "ECX_Mat4f.h"
+#include "ECX_Quaternionf.h"
+
 #include <cmath>
 
 namespace ECX_Maths
@@ -240,6 +242,19 @@ namespace ECX_Maths
 
 			return s * m;
 		}
+
+		float Magnitude(const ECX_Quat4f& q)
+		{
+			return q.s * q.s + q.i * q.i + q.j * q.j + q.k * q.k;
+		}
+
+		ECX_Quat4f Normalize(ECX_Quat4f& q)
+		{
+			float discriminant = 1.0f/sqrtf(Magnitude(q));
+			return q * discriminant;
+		}
+
+
 	}
 }
 #endif // !ECX_FUNC_H
