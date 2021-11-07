@@ -1,4 +1,6 @@
-#pragma once
+#ifndef ECX_VEC4_H
+#define ECX_VEC4_H
+
 #include <cassert>
 
 namespace ECX_Maths
@@ -20,7 +22,7 @@ namespace ECX_Maths
 
 		}
 
-		ECX_Vec4f(const float & scalar) :
+		ECX_Vec4f(const float& scalar) :
 			x(scalar),
 			y(scalar),
 			z(scalar),
@@ -29,7 +31,7 @@ namespace ECX_Maths
 
 		}
 
-		ECX_Vec4f(ECX_Vec4f const & v) :
+		ECX_Vec4f(ECX_Vec4f const& v) :
 			x(v.x),
 			y(v.y),
 			z(v.z),
@@ -38,7 +40,7 @@ namespace ECX_Maths
 
 		}
 
-		ECX_Vec4f(const float & ix, const float & iy, const float & iz, const float & iw) :
+		ECX_Vec4f(const float& ix, const float& iy, const float& iz, const float& iw) :
 			x(ix),
 			y(iy),
 			z(iz),
@@ -51,17 +53,17 @@ namespace ECX_Maths
 			return 4;
 		}
 		// Operators
-		float & operator[](int index)
+		float& operator[](int index)
 		{
 			assert(index > -1 && index < 4);
 			return (&x)[index];
 		}
-		inline float const & operator[](const int index) const
+		inline float const& operator[](const int index) const
 		{
 			assert(index > -1 && index < 4);
 			return (&x)[index];
 		}
-		ECX_Vec4f & operator=(ECX_Vec4f const & v)
+		ECX_Vec4f& operator=(ECX_Vec4f const& v)
 		{
 			this->x = v.x;
 			this->y = v.y;
@@ -70,7 +72,7 @@ namespace ECX_Maths
 			return *this;
 		}
 
-		ECX_Vec4f & operator+=(ECX_Vec4f const & v)
+		ECX_Vec4f& operator+=(ECX_Vec4f const& v)
 		{
 			this->x += v.x;
 			this->y += v.y;
@@ -79,7 +81,7 @@ namespace ECX_Maths
 			return *this;
 		}
 
-		ECX_Vec4f & operator-=(ECX_Vec4f const & v)
+		ECX_Vec4f& operator-=(ECX_Vec4f const& v)
 		{
 			this->x -= v.x;
 			this->y -= v.y;
@@ -87,7 +89,7 @@ namespace ECX_Maths
 			this->w -= v.w;
 			return *this;
 		}
-		ECX_Vec4f & operator*=(float const & scalar)
+		ECX_Vec4f& operator*=(float const& scalar)
 		{
 			this->x *= scalar;
 			this->y *= scalar;
@@ -95,7 +97,7 @@ namespace ECX_Maths
 			this->w *= scalar;
 			return *this;
 		}
-		ECX_Vec4f & operator/=(float const & scalar)
+		ECX_Vec4f& operator/=(float const& scalar)
 		{
 			this->x /= scalar;
 			this->y /= scalar;
@@ -104,7 +106,7 @@ namespace ECX_Maths
 			return *this;
 		}
 
-		ECX_Vec4f operator+(ECX_Vec4f const & v)
+		ECX_Vec4f operator+(ECX_Vec4f const& v)
 		{
 			return ECX_Vec4f(
 				x + v.x,
@@ -113,7 +115,7 @@ namespace ECX_Maths
 				w + v.w
 			);
 		}
-		ECX_Vec4f operator-(ECX_Vec4f const & v)
+		ECX_Vec4f operator-(ECX_Vec4f const& v)
 		{
 			return ECX_Vec4f(
 				x - v.x,
@@ -122,7 +124,7 @@ namespace ECX_Maths
 				w - v.w
 			);
 		}
-		ECX_Vec4f operator*(float const & scalar)
+		ECX_Vec4f operator*(float const& scalar)
 		{
 			return ECX_Vec4f(
 				x * scalar,
@@ -131,7 +133,7 @@ namespace ECX_Maths
 				w * scalar
 			);
 		}
-		ECX_Vec4f operator/(float const & scalar)
+		ECX_Vec4f operator/(float const& scalar)
 		{
 			return ECX_Vec4f(
 				x / scalar,
@@ -142,3 +144,4 @@ namespace ECX_Maths
 		}
 	};
 }
+#endif // !ECX_VEC4_H

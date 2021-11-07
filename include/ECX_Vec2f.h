@@ -1,5 +1,7 @@
-#pragma once
-#include "ECX_Vec3f.h"
+#ifndef ECX_VEC2_H
+#define ECX_VEC2_H
+
+
 #include <cassert>
 
 namespace ECX_Maths
@@ -126,3 +128,4 @@ namespace ECX_Maths
 		}
 	};
 }
+#endif // !ECX_VEC2_H
