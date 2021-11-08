@@ -47,6 +47,72 @@ namespace ECX_Maths
 			);
 		}
 
+		ECX_Quat4f operator / (float const& scalar)
+		{
+			return ECX_Quat4f(
+				s / scalar,
+				i / scalar,
+				j / scalar,
+				k / scalar
+			);
+		}
+
+		ECX_Quat4f operator + (ECX_Quat4f const& rhs)
+		{
+			return ECX_Quat4f(
+				s + rhs.s,
+				i + rhs.i,
+				j + rhs.j,
+				k + rhs.k
+			);
+		}
+
+		ECX_Quat4f operator - (ECX_Quat4f const& rhs)
+		{
+			return ECX_Quat4f(
+				s - rhs.s,
+				i - rhs.i,
+				j - rhs.j,
+				k - rhs.k
+			);
+		}
+
+		ECX_Quat4f operator += (ECX_Quat4f const& rhs)
+		{
+			s += rhs.s;
+			i += rhs.i;
+			j += rhs.j;
+			k += rhs.k;
+			return *this;
+		}
+
+		ECX_Quat4f operator -= (ECX_Quat4f const& rhs)
+		{
+			s -= rhs.s;
+			i -= rhs.i;
+			j -= rhs.j;
+			k -= rhs.k;
+			return *this;
+		}
+
+		ECX_Quat4f operator *= (float const& scalar)
+		{
+			s *= scalar;
+			i *= scalar;
+			j *= scalar;
+			k *= scalar;
+			return *this;
+		}
+
+		ECX_Quat4f operator /= (float const& scalar)
+		{
+			s /= scalar;
+			i /= scalar;
+			j /= scalar;
+			k /= scalar;
+			return *this;
+		}
+
 	};
 }
 #endif // !ECX_QUAT_H
