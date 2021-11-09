@@ -1,6 +1,10 @@
 #ifndef ECX_QUAT_H
 #define ECX_QUAT_H
 
+
+#include "ECX_Vec3f.h"
+#include <cmath>
+
 namespace ECX_Maths
 {
 	struct ECX_Quat4f
@@ -17,6 +21,17 @@ namespace ECX_Maths
 			s(_s)
 		{
 
+		}
+
+		ECX_Quat4f(ECX_Vec3f& euler)
+		{
+			ECX_Vec3f c{ cos(euler.x * 0.5f), cos(euler.y * 0.5f), cos(euler.z * 0.5f) };
+			ECX_Vec3f s{ sin(euler.x * 0.5f), sin(euler.y * 0.5f), sin(euler.z * 0.5f) };
+
+			this->s = c.x * c.y * c.z + s.x * s.y * s.z;
+			this->i = s.x * c.y * c.z - c.x * s.y * s.z;
+			this->j = c.x * s.y * c.z + s.x * c.y * s.z;
+			this->k = c.x * c.y * s.z - s.x * s.y * c.z;
 		}
 
 		ECX_Quat4f(const ECX_Quat4f& rhs)

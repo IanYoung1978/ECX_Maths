@@ -232,7 +232,7 @@ namespace ECX_Maths
 
 			return (rz * ry * rx) * m;
 		}
-
+		
 		ECX_Mat4f Scale(ECX_Mat4f const& m, ECX_Vec3f const& scale)
 		{
 			ECX_Mat4f s(1.0f);
@@ -250,10 +250,24 @@ namespace ECX_Maths
 
 		ECX_Quat4f Normalize(ECX_Quat4f& q)
 		{
-			float discriminant = 1.0f/sqrtf(Magnitude(q));
+			float discriminant = 1.0f/sqrtf(Dot(q,q));
 			return q * discriminant;
 		}
 
+		ECX_Quat4f Inverse(ECX_Quat4f& q)
+		{
+			return Conjugate(q) / Dot(q, q);
+		}
+
+		ECX_Quat4f Conjugate(ECX_Quat4f& q)
+		{
+			return ECX_Quat4f(q.s, -q.i, -q.j, -q.k);
+		}
+
+		float Dot(ECX_Quat4f& q1, ECX_Quat4f& q2)
+		{
+			return q1.i * q2.i + q1.j * q2.j + q1.k * q2.k + q1.s * q2.s;
+		}
 
 	}
 }
