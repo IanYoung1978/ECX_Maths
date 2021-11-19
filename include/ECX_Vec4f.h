@@ -7,11 +7,10 @@ namespace ECX_Maths
 {
 	struct ECX_Vec4f
 	{
-		union
-		{
-			struct { float x, y, z, w; };
-			struct { float r, g, b, a; };
-		};
+		union { float x, r, s; };
+		union { float y, g, t; };
+		union { float z, b, p; };
+		union { float w, a, q; };
 
 		ECX_Vec4f() :
 			x(0.0f),

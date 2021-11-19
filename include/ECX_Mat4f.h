@@ -124,6 +124,16 @@ namespace ECX_Maths
             value[3][3] = 1.0f;
             return *this;
         }
+
+        ECX_Mat4f& operator *= (const float& divisor)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                value[i] *= divisor;
+            }
+            value[3][3] = 1.0f;
+            return *this;
+        }
     };
 }
 #endif // !ECX_MAT4_H

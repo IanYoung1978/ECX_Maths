@@ -8,12 +8,11 @@ namespace ECX_Maths
 {
 	struct ECX_Vec2f
 	{
-		union
-		{
-			struct { float x, y; };
-			struct { float s, t; };
-			struct { float u, v; };
-		};
+
+		union { float x, y; };
+		union { float s, t; };
+		union { float u, v; };
+
 
 		// basic contructor
 		ECX_Vec2f() :

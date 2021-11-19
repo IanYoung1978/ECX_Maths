@@ -8,11 +8,9 @@ namespace ECX_Maths
 {
 	struct ECX_Vec3f
 	{
-		union
-		{
-			struct { float x, y, z; };
-			struct { float r, g, b; };
-		};
+		union { float x, r, s; };
+		union { float y, g, t; };
+		union { float z, b, p; };
 
 		ECX_Vec3f() :
 			x(0.0f),

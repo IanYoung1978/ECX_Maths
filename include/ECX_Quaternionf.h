@@ -34,6 +34,11 @@ namespace ECX_Maths
 			this->k = c.x * c.y * s.z - s.x * s.y * c.z;
 		}
 
+		ECX_Quat4f(ECX_Vec3f& axis, float angleRad)
+		{
+			//TODO: Implement angle/axis to quat constructor.
+		}
+
 		ECX_Quat4f(const ECX_Quat4f& rhs)
 		{
 			i = rhs.i;
@@ -119,12 +124,33 @@ namespace ECX_Maths
 			return *this;
 		}
 
+		ECX_Quat4f operator *= (ECX_Quat4f const& rhs)
+		{
+			ECX_Quat4f p(*this);
+			ECX_Quat4f q(rhs);
+
+			this->s = p.s * q.s - p.i * q.i - p.j * q.j - p.k * q.k;
+			this->i = p.s * q.i + p.i * q.s + p.j * q.k - p.k * q.j;
+			this->j = p.s * q.j + p.j * q.s + p.k * q.i - p.i * q.k;
+			this->k = p.s * q.k + p.k * q.s + p.i * q.j - p.j * q.i;
+			return *this;
+		}
+
 		ECX_Quat4f operator /= (float const& scalar)
 		{
 			s /= scalar;
 			i /= scalar;
 			j /= scalar;
 			k /= scalar;
+			return *this;
+		}
+
+		ECX_Quat4f operator = (float const& scalar)
+		{
+			s = scalar;
+			i = scalar;
+			j = scalar;
+			k = scalar;
 			return *this;
 		}
 
