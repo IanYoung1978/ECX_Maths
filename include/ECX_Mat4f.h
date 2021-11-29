@@ -2,6 +2,7 @@
 #define ECX_MAT4_H
 
 #include "ECX_Vec4f.h"
+#include "ECX_Mat3f.h"
 #include <cassert>
 
 namespace ECX_Maths
@@ -21,7 +22,7 @@ namespace ECX_Maths
             value[0] = ECX_Vec4f(scalar, 0.0f, 0.0f, 0.0f);
             value[1] = ECX_Vec4f(0.0f, scalar, 0.0f, 0.0f);
             value[2] = ECX_Vec4f(0.0f, 0.0f, scalar, 0.0f);
-            value[3] = ECX_Vec4f(0.0f, 0.0f, 0.0f, scalar);
+            value[3] = ECX_Vec4f(0.0f, 0.0f, 0.0f,   1.0f);
         }
         ECX_Mat4f(
             const float& x0, const float& y0, const float& z0, const float w0,
@@ -42,6 +43,29 @@ namespace ECX_Maths
             value[2] = v2;
             value[2] = v3;
         }
+        ECX_Mat4f(const ECX_Mat3f& m)
+        {
+            value[0][0] = m[0][0];
+            value[1][0] = m[1][0];
+            value[2][0] = m[2][0];
+            value[0][1] = m[0][1];
+            value[1][1] = m[1][1];
+            value[1][1] = m[2][1];
+            value[0][2] = m[0][2];
+            value[1][2] = m[1][2];
+            value[2][2] = m[2][2];
+
+            value[0][3] = 0.0f;
+            value[1][3] = 0.0f;
+            value[2][3] = 0.0f;
+            value[3][3] = 1.0f;
+
+            value[3][0] = 0.0f;
+            value[3][1] = 0.0f;
+            value[3][2] = 0.0f;
+
+        }
+
         const int length()
         {
             return 4;

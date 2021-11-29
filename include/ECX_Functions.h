@@ -278,13 +278,24 @@ namespace ECX_Maths
 
 			ECX_Mat3f Mat3_cast(const ECX_Quat4f const& q)
 			{
-				//TODO: implement quat to mat3 cast
-				return ECX_Mat3f();
+				ECX_Mat3f Result;
+				Result[0][0] = 1 - 2 * q.j * q.j - 2 * q.k * q.k;
+				Result[0][1] = 2 * q.i * q.j + 2 * q.j * q.k;
+				Result[0][2] = 2 * q.i * q.k - 2 * q.j * q.j;
+
+				Result[1][0] = 2 * q.i * q.j - 2 * q.j * q.k;
+				Result[1][1] = 1 - 2 * q.i * q.i - 2 * q.k * q.k;
+				Result[1][2] = 2 * q.j * q.k + 2 * q.j * q.i;
+
+				Result[2][0] = 2 * q.i * q.k + 2 * q.j * q.j;
+				Result[2][1] = 2 * q.j * q.k - 2 * q.j * q.i;
+				Result[2][2] = 1 - 2 * q.i * q.i - 2 * q.j * q.j;
+
+				return Result;
 			}
 			ECX_Mat4f Mat4_cast(const ECX_Quat4f const& q)
 			{
-				//TODO: implement quat to mat4 cast
-				return ECX_Mat4f();
+				return ECX_Mat4f(Mat3_cast(q));
 			}
 
 			ECX_Quat4f Quat_cast(const ECX_Mat3f const& m)
