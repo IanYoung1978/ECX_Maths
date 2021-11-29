@@ -276,15 +276,81 @@ namespace ECX_Maths
 				return q1.i * q2.i + q1.j * q2.j + q1.k * q2.k + q1.s * q2.s;
 			}
 
-			ECX_Mat3f Mat3_cast(const ECX_Quat4f const& q1)
+			ECX_Mat3f Mat3_cast(const ECX_Quat4f const& q)
 			{
+				//TODO: implement quat to mat3 cast
 				return ECX_Mat3f();
 			}
-			//TODO: implement quat to mat4 cast
-			//TODO: implement quat to mat3 cast
-			//TODO: implement mat4 to quat cast
-			//TODO: implement mat3 to quat cast
-		} //End namespace QUaternion
+			ECX_Mat4f Mat4_cast(const ECX_Quat4f const& q)
+			{
+				//TODO: implement quat to mat4 cast
+				return ECX_Mat4f();
+			}
+
+			ECX_Quat4f Quat_cast(const ECX_Mat3f const& m)
+			{
+				float fourXSquaredMinus1 = m[0][0] - m[1][1] - m[2][2];
+				float fourYSquaredMinus1 = m[1][1] - m[0][0] - m[2][2];
+				float fourZSquaredMinus1 = m[2][2] - m[0][0] - m[1][1];
+				float fourWSquaredMinus1 = m[0][0] + m[1][1] + m[2][2];
+
+				int biggestIndex = 0;
+				float fourBiggestSquaredMinus1 = fourWSquaredMinus1;
+				if (fourXSquaredMinus1 > fourBiggestSquaredMinus1)
+				{
+					fourBiggestSquaredMinus1 = fourXSquaredMinus1;
+					biggestIndex = 1;
+				}
+				if (fourYSquaredMinus1 > fourBiggestSquaredMinus1)
+				{
+					fourBiggestSquaredMinus1 = fourYSquaredMinus1;
+					biggestIndex = 2;
+				}
+				if (fourZSquaredMinus1 > fourBiggestSquaredMinus1)
+				{
+					fourBiggestSquaredMinus1 = fourZSquaredMinus1;
+					biggestIndex = 3;
+				}
+
+				float biggestVal = sqrtf(fourBiggestSquaredMinus1 + 1) * 0.5f;
+				float mult = 0.25f / biggestVal;
+
+				ECX_Quat4f Result(1.0f);
+				switch (biggestIndex)
+				{
+				case 0:
+					Result.s = biggestVal;
+					Result.i = (m[1][2] - m[2][1]) * mult;
+					Result.j = (m[2][0] - m[0][2]) * mult;
+					Result.k = (m[0][1] - m[1][0]) * mult;
+					break;
+				case 1:
+					Result.s = (m[1][2] - m[2][1]) * mult;
+					Result.i = biggestVal;
+					Result.j = (m[0][1] + m[1][0]) * mult;
+					Result.k = (m[2][0] + m[0][2]) * mult;
+					break;
+				case 2:
+					Result.s = (m[2][0] - m[0][2]) * mult;
+					Result.i = (m[0][1] + m[1][0]) * mult;
+					Result.j = biggestVal;
+					Result.k = (m[1][2] + m[2][1]) * mult;
+					break;
+				case 3:
+					Result.s = (m[0][1] - m[1][0]) * mult;
+					Result.i = (m[2][0] + m[0][2]) * mult;
+					Result.j = (m[1][2] + m[2][1]) * mult;
+					Result.k = biggestVal;
+					break;
+				}
+				return Result;
+			}
+
+			ECX_Quat4f Quat_cast(const ECX_Mat4f const& m)
+			{
+				return Quat_cast(ECX_Mat3f(m));
+			}
+		} //End namespace Quaternion
 	}
 }
 #endif // !ECX_FUNC_H

@@ -14,6 +14,15 @@ namespace ECX_Maths
 		float j;
 		float k;
 
+		ECX_Quat4f(float _s) :
+			i(0.0f),
+			j(0.0f),
+			k(0.0f),
+			s(_s)
+		{
+
+		}
+
 		ECX_Quat4f(float _s, float _i, float _j, float _k):
 			i(_i),
 			j(_j),
