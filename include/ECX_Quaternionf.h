@@ -14,7 +14,7 @@ namespace ECX_Maths
 		float j;
 		float k;
 
-		ECX_Quat4f(float _s) :
+		ECX_Quat4f(float _s = 1.0f) :
 			i(0.0f),
 			j(0.0f),
 			k(0.0f),
@@ -41,11 +41,6 @@ namespace ECX_Maths
 			this->i = s.x * c.y * c.z - c.x * s.y * s.z;
 			this->j = c.x * s.y * c.z + s.x * c.y * s.z;
 			this->k = c.x * c.y * s.z - s.x * s.y * c.z;
-		}
-
-		ECX_Quat4f(ECX_Vec3f& axis, float angleRad)
-		{
-			//TODO: Implement angle/axis to quat constructor.
 		}
 
 		ECX_Quat4f(const ECX_Quat4f& rhs)

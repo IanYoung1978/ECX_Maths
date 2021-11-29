@@ -361,6 +361,22 @@ namespace ECX_Maths
 			{
 				return Quat_cast(ECX_Mat3f(m));
 			}
+
+			ECX_Quat4f AxisAngle(const ECX_Vec3f& axis, const float angle)
+			{
+				ECX_Vec3f v = axis;
+				if (Vector::Length(v) > 1.0f)
+					v = Vector::Normalize(v);
+
+				ECX_Quat4f q;
+
+				q.s = cosf(angle * 0.5f);
+				q.i = v.x * sinf(angle * 0.5f);
+				q.j = v.y * sinf(angle * 0.5f);
+				q.k = v.z * sinf(angle * 0.5f);
+
+				return q;
+			}
 		} //End namespace Quaternion
 	}
 }
